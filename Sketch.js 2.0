@@ -1,0 +1,97 @@
+var words          = [ "rabbit", "cat", "fish", "dog"];
+var currentWord    = words[Math.floor(Math.random() * words.length - 1) + 1];
+var userScore      = 0;
+function setup () {
+  createCanvas(700, 500);
+  
+  input = createInput();
+  input.position(400, 455);
+
+  button = createButton('Guess');
+  button.position(input.x + input.width, 455);
+  
+  button.mousePressed(checkGuess);
+}
+
+/*
+Function from stackOverflow : How to check if a string is just characters
+reference : https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
+*/
+function isLetter(str) {
+  return str.length === 1 && str.match(/[a-z]/i);
+}
+
+function draw() {
+  background(220);
+  text("Bilal's Guessing Game",200,200);
+}
+
+function checkGuess() {
+  // you can check the users input using onput.value() here
+  // CODE check guess of user and compare with the currentWord, update display here
+  // ....later on update hangman character (later on...)
+  if(!isLetter(input.value()) || input.value().length > 1 || input.value().length == 0){
+    console.log("GUESS IS NOT VALID");
+  }else {
+    // the value of input.value() is a valid guess from the user....
+    // write code to check if users guess is correct (**YOU DO**)
+    //console.log(currentWord);  //this prints to currentword we are guessing 
+    //console.log(input.value()); //prints users guessed letter
+         
+    for(let i = 0; i < currentWord.length ; ++i) {
+      if(currentWord[i] == input.value()) {
+        ++userScore;
+        console.log("Correct Guess : " + userScore);
+      }
+    
+      }
+    }
+    for (let i = 0; i <words.length; ++i) {
+      if (words[i] == input.value()) {
+      words = userScore;
+      ++userScore;
+      console.log("Correct Guess :" + currentWord)
+      }
+    }
+  
+      
+    
+    
+  
+  
+}
+// You think you got your word type it in the guess box
+
+
+
+function displayGuessedWord() {
+  // CODE to display guessedWord
+}
+/*
+
+Hangman Game (Project structure):
+  part 1 : display characters on screen, and take user guesses
+  part 2 : divide number of words per line, so it doesnt overflow off screen
+  part 3 : displaying our hangman properly, and ending game.  
+
+  1st part of the game:
+  *********************
+  
+    curWord = "Peter piper picked a pot of pickled peppers" <---
+              8 words, 4 words per line <--- wordCounter
+    
+    
+    P _ _ _ _   p i p ... Limit on the number of words shown per line
+    P e t e r   p i p...
+     
+    
+   let currGuess = input("Make a Guess");
+       currGuess = 'p'
+       curGuess= 'i'
+  
+  for(let i = 0; i < currentWord.length(); ++i)
+    if(curGuess == currentWord) updateDisplay();
+      
+  2nd part Adding hangman....part 2
+
+*/
